@@ -1,10 +1,11 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
+import Header from '../Header/Header';
 import './App.scss';
 
-function App() {
+const App: FunctionComponent = () => {
   return (
-    <div className="App">
-
+    <div className="app">
+      <Header />
     </div>
   );
 }
