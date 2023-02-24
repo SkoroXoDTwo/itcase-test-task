@@ -2,13 +2,14 @@ import { FunctionComponent, PropsWithChildren, useEffect } from 'react';
 import { AppDispatch } from '../../redux/store';
 import { useSelector, useDispatch } from "react-redux";
 import { loadSizes } from '../../redux/slices/sizes';
+import { loadProducts } from '../../redux/slices/products';
 import './ProductsList.scss';
 
 const ProductsList: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(loadSizes());
+    dispatch(loadProducts());
   }, [dispatch])
 
   return (

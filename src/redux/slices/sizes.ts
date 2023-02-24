@@ -8,13 +8,13 @@ type SizesI = {
 }
 
 type SizesState = {
-  entities: SizesI[] | null,
+  items: SizesI[] | null,
   status: 'idle' | 'loading' | 'loaded' | 'error'
   error: string | null
 }
 
 const initialState: SizesState = {
-  entities: [],
+  items: [],
   status: 'idle',
   error: "",
 };
@@ -34,17 +34,17 @@ const sizesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loadSizes.pending, (state) => {
+      .addCase(loadSizes.pending, (state, action) => {
         state.status = 'loading';
         state.error = null;
       })
       .addCase(loadSizes.rejected, (state) => {
-        state.status = 'error';
+        state.status = 'idle';
         state.error = 'Something went wrong!'
       })
       .addCase(loadSizes.fulfilled, (state, action) => {
-        state.entities = action.payload;
-        state.status = 'loaded';
+        state.items = action.payload;
+        state.status = 'idle';
       })
   }
 });
