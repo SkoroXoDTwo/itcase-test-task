@@ -1,12 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getProducts } from "../../services/api";
 import { RootState } from "../store";
-
-type Product = {
-  id: number,
-  name: string,
-  imgLink: string,
-}
+import { ProductAllInfo, Product } from "../../@types/types";
 
 type ProductsState = {
   entities: Product[] | null,
@@ -24,12 +19,12 @@ export const loadProducts = createAsyncThunk(
   '@@products/load-all',
   async () => {
     const res = await getProducts();
-    const data = res.map((item: any) => {
+    const data = res.map((item: ProductAllInfo) => {
       const { id, name } = item;
       const imgLink = item.colors[0].images[0] ? item.colors[0].images[0] : ''
       return { id, name, imgLink }
     })
-    console.log(data)
+
     return data;
   }
 );
@@ -57,3 +52,4 @@ const productsSlice = createSlice({
 
 export const productsReducer = productsSlice.reducer;
 export const selectProducts = (state: RootState) => state.products.entities;
+export const selectProductsLoadStatus = (state: RootState) => state.products.status;

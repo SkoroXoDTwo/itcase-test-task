@@ -1,24 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getProduct } from "../../services/api";
 import { RootState } from "../store";
-
-type Product = {
-  id: number,
-  name: string,
-  colors: [
-    {
-      id: number,
-      name: string,
-      images: string[],
-      price: string,
-      description: string,
-      sizes: number[],
-    }
-  ],
-}
+import { ProductAllInfo } from "../../@types/types";
 
 type ProductsState = {
-  entities: Product | null,
+  entities: ProductAllInfo | null,
   status: 'idle' | 'loading' | 'loaded' | 'error'
   error: string | null
 }

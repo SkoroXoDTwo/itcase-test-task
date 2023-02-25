@@ -1,29 +1,34 @@
 import { FunctionComponent, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { selectProducts } from '../redux/slices/products';
-import { loadProducts } from '../redux/slices/products';
+import { loadProducts, selectProductsLoadStatus } from '../redux/slices/products';
 import { AppDispatch } from '../redux/store';
-import ProductCard from '../components/ProductCard/ProductCard';
+
 import ProductsList from '../components/ProductsList/ProductsList';
+import Loader from '../components/Loader/Loader';
+import Main from '../components/Main/Main';
+import Error from '../components/Error/Error';
 
 const Catalog: FunctionComponent = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector(selectProducts);
+
+  const status = useSelector(selectProductsLoadStatus);
 
   useEffect(() => {
     dispatch(loadProducts());
   }, [dispatch])
 
   return (
-    <>
-      <ProductsList>
-        {
-          products && products.map(product => (
-            <ProductCard key={product.id} id={product.id} name={product.name} imgLink={product.imgLink} />
-          ))
-        }
-      </ProductsList>
-    </>
+    <Main>
+      {
+        status === "loaded" && <ProductsList />
+      }
+      {
+        status === "loading" && <Loader />
+      }
+      {
+        status === "error" && <Error />
+      }
+    </Main>
   );
 }
 

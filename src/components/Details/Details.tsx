@@ -1,8 +1,8 @@
 import { FunctionComponent, PropsWithChildren, useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
+import './Details.scss';
 import { selectSizes } from '../../redux/slices/sizes';
 import { selectProduct } from '../../redux/slices/product';
-import './Details.scss';
 
 const Details: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const [selectedColorId, setSelectedColorId] = useState<number>(0);
