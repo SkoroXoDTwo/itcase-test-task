@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getSizes } from "../../services/api";
+import { RootState } from "../store";
 
 type SizesI = {
   id: number,
@@ -8,13 +9,13 @@ type SizesI = {
 }
 
 type SizesState = {
-  items: SizesI[] | null,
+  entities: SizesI[] | null,
   status: 'idle' | 'loading' | 'loaded' | 'error'
   error: string | null
 }
 
 const initialState: SizesState = {
-  items: [],
+  entities: [],
   status: 'idle',
   error: "",
 };
@@ -43,10 +44,11 @@ const sizesSlice = createSlice({
         state.error = 'Something went wrong!'
       })
       .addCase(loadSizes.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.entities = action.payload;
         state.status = 'idle';
       })
   }
 });
 
 export const sizesReducer = sizesSlice.reducer;
+export const selectSizes = (state: RootState) => state.sizes.entities;

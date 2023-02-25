@@ -29,7 +29,7 @@ export const loadProducts = createAsyncThunk(
       const imgLink = item.colors[0].images[0] ? item.colors[0].images[0] : ''
       return { id, name, imgLink }
     })
-
+    console.log(data)
     return data;
   }
 );

@@ -1,0 +1,14 @@
+.loader {
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+
+  &__gif {
+    width: 100px;
+    height: 100px;
+    background: url(../../images/loader.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
