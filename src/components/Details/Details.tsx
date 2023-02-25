@@ -42,10 +42,15 @@ const Details: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
     <section className="details">
       <div className='details__imgs'>
-        <img className='details__prime-img' src={imgPrimeLink} />
+        <img className='details__prime-img' src={`${process.env.PUBLIC_URL}${imgPrimeLink}`} />
         <div className='details__others-imgs'>
           {imgsOtherLinks.map((link: string, id) => (
-            <img key={link} className='details__other-img' src={link} onClick={() => changePrimeImgId(link)} />
+            <img
+              key={link}
+              className='details__other-img'
+              src={`${process.env.PUBLIC_URL}${link}`}
+              onClick={() => changePrimeImgId(link)}
+            />
           ))}
         </div>
       </div>

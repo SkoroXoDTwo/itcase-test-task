@@ -13,7 +13,7 @@ const ProductCard: FunctionComponent<Props> = ({ id, name, imgLink }) => {
     <li>
       <Link to={`/product/${id}`}>
         <article className='product-card'>
-          <img className='product-card__img' src={imgLink} alt={name} />
+          <img className='product-card__img' src={`${process.env.PUBLIC_URL}${imgLink}`}  alt={name} />
           <div className='product-card__cover'>
             <h3 className='product-card__name'>{name}</h3>
           </div>
